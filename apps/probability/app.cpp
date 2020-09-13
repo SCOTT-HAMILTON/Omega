@@ -24,8 +24,6 @@ const Image * App::Descriptor::icon() {
 }
 
 App::Snapshot::Snapshot() :
-  m_distribution{},
-  m_calculation{},
   m_activePage(Page::Distribution)
 {
   initializeDistributionAndCalculation();

@@ -24,8 +24,10 @@ void Agenda::FriendController::setAgendaData(AgendaData* agendaData) {
 
 void Agenda::FriendController::willDisplayCellForIndex(HighlightCell * cell, int index) {
 	Cell * myCell = (Cell *)cell;
-	if (index == AGENDA_NUMS-1)
+	if (index == AGENDA_NUMS)
 		myCell->setLabel(I18n::Message::CommonGaps);
+	else if (index == AGENDA_NUMS-1)
+		myCell->setLabel(I18n::Message::Me);
 	else
 		myCell->setText(m_agendaData->friend_agendas[index].name);
 	myCell->setImage(ImageStore::AgendaBinomialIcon, ImageStore::AgendaFocusedBinomialIcon);
@@ -45,7 +47,8 @@ void Agenda::FriendController::didBecomeFirstResponder() {
 bool Agenda::FriendController::handleEvent(Ion::Events::Event event) {
 	if (event == Ion::Events::OK || event == Ion::Events::EXE || event == Ion::Events::Right) {
 		StackViewController * stack = (StackViewController *)parentResponder();
-		if (selectedRow() == AGENDA_NUMS-1) {
+		if (selectedRow() == AGENDA_NUMS) {
+			m_commonGapsController->reload();
 			stack->push(m_commonGapsController, Palette::BannerFirstText, Palette::BannerFirstBackground, Palette::BannerFirstBorder);
 		} else {
 			m_agendaData->currentFriend = selectedRow();

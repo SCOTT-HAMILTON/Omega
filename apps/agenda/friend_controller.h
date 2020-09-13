@@ -11,7 +11,7 @@
 
 namespace Agenda {
 
-class FriendController : public BaseController<AGENDA_NUMS, Cell> {
+class FriendController : public BaseController<AGENDA_NUMS+1, Cell> {
 public:
 	FriendController(Responder * parentResponder, FriendAgendaController* friendAgendaController, CommonGapsController* commonGapsController);
 	void setAgendaData(AgendaData* agendaData);

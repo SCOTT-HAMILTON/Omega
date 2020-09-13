@@ -19,6 +19,7 @@ public:
 	void willDisplayCellForIndex(HighlightCell * cell, int index) override;
 	void didBecomeFirstResponder() override;
 	bool handleEvent(Ion::Events::Event event) override;
+	void reload();
 
 private:
 	size_t calculateCommonGaps(CommonGap* commonGaps) const;

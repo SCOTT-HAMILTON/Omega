@@ -49,6 +49,10 @@ bool Agenda::CommonGapsController::handleEvent(Ion::Events::Event event) {
 	return false;
 }
 
+void Agenda::CommonGapsController::reload() {
+	m_contentView.reload();
+}
+
 const Day& Agenda::CommonGapsController::currentDay() {
 	int day = m_agendaData->currentDayOfWeek;
 	if (m_agendaData->currentWeek == 1) 
@@ -97,6 +101,7 @@ size_t Agenda::CommonGapsController::calculateCommonGaps(CommonGap* commonGaps) 
 	}
 	return commonGapsCounter;
 }
+
 bool operator==(const Gap& g1, const Gap &g2) {
 	return g1.start == g2.start && g1.end == g2.end;
 }

@@ -23,18 +23,22 @@ void Agenda::FriendAgendaController::willDisplayCellForIndex(HighlightCell * cel
 	int day = m_agendaData->currentDayOfWeek;
 	if (m_agendaData->currentWeek == 1) 
 		day += 6;
-	const Day& currentAgenda = m_agendaData->friend_agendas[m_agendaData->currentFriend].days[day];
+	const Day* currentAgenda;
+	if(m_agendaData->currentFriend == AGENDA_NUMS-1)
+		currentAgenda = &agendas[myAgenda].days[day];
+	else 
+		currentAgenda = &m_agendaData->friend_agendas[m_agendaData->currentFriend].days[day];
 	if (index == 0) {
 		char buffer[10] = {'\0'};
-		timeToString(buffer, currentAgenda.startTime);
+		timeToString(buffer, currentAgenda->startTime);
 		myCell->setText(buffer);
 	} else if (index == static_cast<int>(k_totalNumberOfRows)-1) {
 		char buffer[10] = {'\0'};
-		timeToString(buffer, currentAgenda.endTime);
+		timeToString(buffer, currentAgenda->endTime);
 		myCell->setText(buffer);
 	} else {
 		char buffer[20] = {'\0'};
-		gapToString(buffer, currentAgenda.gaps[index-1]);
+		gapToString(buffer, currentAgenda->gaps[index-1]);
 		myCell->setText(buffer);
 	}
 	myCell->reloadCell();
