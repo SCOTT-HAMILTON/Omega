@@ -46,6 +46,10 @@ protected:
 		void reload() {
 			layoutSubviews(true);
 		}
+		void setTitle(const char* text) {
+			strlcpy(owned_text, text, strlen(text)+1);
+			m_titleView.setText(owned_text);
+		}
 	private:
 		int numberOfSubviews() const override {
 			return 2; }
@@ -62,6 +66,7 @@ protected:
 			m_titleView.setFrame(KDRect(0, 0, bounds().width(), titleHeight), force);
 			m_selectableTableView->setFrame(KDRect(0, titleHeight, bounds().width(),  bounds().height()-titleHeight), force);
 		}
+		char owned_text[96];
 		MessageTextView m_titleView;
 		SelectableTableView * m_selectableTableView;
 	};

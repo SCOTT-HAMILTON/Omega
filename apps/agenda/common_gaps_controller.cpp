@@ -50,6 +50,7 @@ bool Agenda::CommonGapsController::handleEvent(Ion::Events::Event event) {
 }
 
 void Agenda::CommonGapsController::reload() {
+	k_totalNumberOfRows = calculateCommonGaps(commonGaps)*2;
 	m_contentView.reload();
 }
 

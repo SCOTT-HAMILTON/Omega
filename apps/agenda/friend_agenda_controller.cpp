@@ -14,8 +14,16 @@ void Agenda::FriendAgendaController::setAgendaData(AgendaData* agendaData) {
 	int day = m_agendaData->currentDayOfWeek;
 	if (m_agendaData->currentWeek == 1) 
 		day += 6;
-	const Day& currentAgenda = m_agendaData->friend_agendas[m_agendaData->currentFriend].days[day];
-	k_totalNumberOfRows = currentAgenda.gapsCount+2;
+	const Day* currentAgenda;
+	if(m_agendaData->currentFriend == AGENDA_NUMS-1) {
+		currentAgenda = &agendas[myAgenda].days[day];
+		m_contentView.setTitle(agendas[myAgenda].name);
+	}
+	else {
+		currentAgenda = &m_agendaData->friend_agendas[m_agendaData->currentFriend].days[day];
+		m_contentView.setTitle(m_agendaData->friend_agendas[m_agendaData->currentFriend].name);
+	}
+	k_totalNumberOfRows = currentAgenda->gapsCount+2;
 }
 
 void Agenda::FriendAgendaController::willDisplayCellForIndex(HighlightCell * cell, int index) {
@@ -65,6 +73,19 @@ bool Agenda::FriendAgendaController::handleEvent(Ion::Events::Event event) {
 }
 
 void Agenda::FriendAgendaController::reload() {
+	int day = m_agendaData->currentDayOfWeek;
+	if (m_agendaData->currentWeek == 1) 
+		day += 6;
+	const Day* currentAgenda;
+	if(m_agendaData->currentFriend == AGENDA_NUMS-1) {
+		currentAgenda = &agendas[myAgenda].days[day];
+		m_contentView.setTitle(agendas[myAgenda].name);
+	}
+	else {
+		currentAgenda = &m_agendaData->friend_agendas[m_agendaData->currentFriend].days[day];
+		m_contentView.setTitle(m_agendaData->friend_agendas[m_agendaData->currentFriend].name);
+	}
+	k_totalNumberOfRows = currentAgenda->gapsCount+2;
 	m_contentView.reload();
 }
 
