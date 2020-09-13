@@ -5,7 +5,7 @@
 #include <escher/stack_view.h>
 #include <escher/palette.h>
 
-constexpr uint8_t kMaxNumberOfStacks = 4;
+constexpr uint8_t kMaxNumberOfStacks = 5;
 
 class StackViewController : public ViewController {
 public:
