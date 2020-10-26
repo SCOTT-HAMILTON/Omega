@@ -6,6 +6,8 @@
 #include "friend_controller.h"
 #include "friend_agenda_controller.h"
 #include "common_gaps_controller.h"
+#include "starts_with_me_controller.h"
+#include "ends_with_me_controller.h"
 #include "agenda_data.h"
 #include "../shared/text_field_delegate_app.h"
 
@@ -27,7 +29,9 @@ public:
 			DayOfWeekMenu,
 			FriendMenu,
 			FriendAgenda,
-			CommonGaps
+			CommonGaps,
+			StartsWithMe,
+			EndsWithMe
 		};
 		Snapshot();
 		~Snapshot();
@@ -49,9 +53,11 @@ private:
 	App(Snapshot * snapshot);
 	FriendAgendaController m_friendAgendaController;
 	CommonGapsController m_commonGapsController;
+	StartsWithMeController m_startsWithMeController;
 	FriendController m_friendController;
 	DayOfWeekController m_dayOfWeekController;
 	StackViewController m_stackViewController;
+	EndsWithMeController m_endsWithMeController;
 	AgendaData m_agendaData;
 };
 

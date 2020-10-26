@@ -64,9 +64,8 @@ void Agenda::FriendAgendaController::didBecomeFirstResponder() {
 
 bool Agenda::FriendAgendaController::handleEvent(Ion::Events::Event event) {
 	if (event == Ion::Events::Back || event == Ion::Events::Left) {
-		/* m_agendaData->currentFriend = selectedRow(); */
 		StackViewController * stack = (StackViewController *)parentResponder();
-		stack->pop(); // Because of StackController max push count
+		stack->pop();
 		return true;
 	}
 	return false;

@@ -73,4 +73,30 @@ void gapToString(char* str, const Gap& g) {
 	itoa(g.end.minutes, buf, 10);
 	strcat(str, buf);
 }
+bool operator==(const Gap& g1, const Gap &g2) {
+	return g1.start == g2.start && g1.end == g2.end;
+}
+bool operator>(const AgendaTime& t1, const AgendaTime &t2) {
+	if (t1.hours > t2.hours)
+		return true;
+	if (t1.hours < t2.hours)
+		return false;
+	return t1.minutes > t2.minutes;
+}
+bool operator==(const AgendaTime& t1, const AgendaTime &t2) {
+	return t1.minutes == t2.minutes && t1.hours == t2.hours;
+}
+bool operator<=(const AgendaTime& t1, const AgendaTime &t2) {
+	return t1 < t2 || t1 == t2;
+}
+} // Agenda
+bool operator<(const AgendaTime& t1, const AgendaTime &t2) {
+	if (t1.hours < t2.hours)
+		return true;
+	if (t1.hours > t2.hours)
+		return false;
+	return t1.minutes < t2.minutes;
+}
+bool operator<(const CommonGap& g1, const CommonGap &g2) {
+	return g1.start < g2.start || g1.end < g2.end;
 }

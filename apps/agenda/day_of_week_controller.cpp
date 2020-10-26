@@ -64,9 +64,8 @@ void Agenda::DayOfWeekController::didBecomeFirstResponder() {
 
 bool Agenda::DayOfWeekController::handleEvent(Ion::Events::Event event) {
 	if (event == Ion::Events::OK || event == Ion::Events::EXE || event == Ion::Events::Right) {
-		m_agendaData->currentDayOfWeek = selectedRow();
 		StackViewController * stack = (StackViewController *)parentResponder();
-		/* stack->pop(); */
+		m_agendaData->currentDayOfWeek = selectedRow();
 		stack->push(m_friendController, Palette::BannerFirstText, Palette::BannerFirstBackground, Palette::BannerFirstBorder);
 		return true;
 	}

@@ -55,7 +55,9 @@ App::App(Snapshot * snapshot) :
 	TextFieldDelegateApp(snapshot, &m_stackViewController),
 	m_friendAgendaController(&m_stackViewController),
 	m_commonGapsController(&m_stackViewController),
-	m_friendController(&m_stackViewController, &m_friendAgendaController, &m_commonGapsController),
+	m_startsWithMeController(&m_stackViewController),
+	m_endsWithMeController(&m_stackViewController),
+	m_friendController(&m_stackViewController, &m_friendAgendaController, &m_commonGapsController, &m_startsWithMeController, &m_endsWithMeController),
 	m_dayOfWeekController(&m_stackViewController, &m_friendController),
 	m_stackViewController(&m_modalViewController, &m_dayOfWeekController)
 {
@@ -65,6 +67,8 @@ App::App(Snapshot * snapshot) :
 	m_dayOfWeekController.setAgendaData(&m_agendaData);
 	m_friendController.setAgendaData(&m_agendaData);
 	m_commonGapsController.setAgendaData(&m_agendaData);
+	m_startsWithMeController.setAgendaData(&m_agendaData);
+	m_endsWithMeController.setAgendaData(&m_agendaData);
 	m_friendAgendaController.setAgendaData(&m_agendaData);
 
 	switch (snapshot->activePage()) {

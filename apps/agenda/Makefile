@@ -8,6 +8,8 @@ app_agenda_src = $(addprefix apps/agenda/,\
   friend_cell.cpp \
   friend_agenda_controller.cpp \
   common_gaps_controller.cpp \
+  starts_with_me_controller.cpp \
+  ends_with_me_controller.cpp \
   friend_controller.cpp \
   day_of_week_controller.cpp \
 )

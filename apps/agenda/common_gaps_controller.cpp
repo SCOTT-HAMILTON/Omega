@@ -39,13 +39,11 @@ void Agenda::CommonGapsController::didBecomeFirstResponder() {
 }
 
 bool Agenda::CommonGapsController::handleEvent(Ion::Events::Event event) {
-	/* if (event == Ion::Events::OK || event == Ion::Events::EXE || event == Ion::Events::Right) { */
-	/* 	m_agendaData->currentFriend = selectedRow(); */
-	/* 	StackViewController * stack = (StackViewController *)parentResponder(); */
-	/* 	stack->pop(); // Because of StackController max push count */
-	/* 	stack->push(m_friendAgendaController, Palette::BannerFirstText, Palette::BannerFirstBackground, Palette::BannerFirstBorder); */
-	/* 	return true; */
-	/* } */
+	if (event == Ion::Events::Left || event == Ion::Events::Back) {
+		StackViewController * stack = (StackViewController *)parentResponder();
+		stack->pop();
+		return true;
+	}
 	return false;
 }
 
@@ -103,30 +101,4 @@ size_t Agenda::CommonGapsController::calculateCommonGaps(CommonGap* commonGaps) 
 	return commonGapsCounter;
 }
 
-bool operator==(const Gap& g1, const Gap &g2) {
-	return g1.start == g2.start && g1.end == g2.end;
-}
-bool operator>(const AgendaTime& t1, const AgendaTime &t2) {
-	if (t1.hours > t2.hours)
-		return true;
-	if (t1.hours < t2.hours)
-		return false;
-	return t1.minutes > t2.minutes;
-}
-bool operator==(const AgendaTime& t1, const AgendaTime &t2) {
-	return t1.minutes == t2.minutes && t1.hours == t2.hours;
-}
-bool operator<=(const AgendaTime& t1, const AgendaTime &t2) {
-	return t1 < t2 || t1 == t2;
-}
-}
-bool operator<(const AgendaTime& t1, const AgendaTime &t2) {
-	if (t1.hours < t2.hours)
-		return true;
-	if (t1.hours > t2.hours)
-		return false;
-	return t1.minutes < t2.minutes;
-}
-bool operator<(const CommonGap& g1, const CommonGap &g2) {
-	return g1.start < g2.start || g1.end < g2.end;
 }
