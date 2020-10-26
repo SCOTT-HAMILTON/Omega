@@ -28,6 +28,16 @@ i18n_files += $(addprefix apps/agenda/,\
 )
 
 # Image dependencies
+#
+app_images = += apps/agenda/agenda_icon.png \
+				apps/agenda/agenda_binomial_icon.png \
+				apps/agenda/agenda_uniform_icon.png \
+				apps/agenda/agenda_exponential_icon.png \
+				apps/agenda/agenda_normal_icon.png \
+				apps/agenda/agenda_focused_binomial_icon.png \
+				apps/agenda/agenda_focused_uniform_icon.png \
+				apps/agenda/agenda_focused_exponential_icon.png \
+				apps/agenda/agenda_focused_normal_icon.png
 
 $(eval $(call depends_on_image,apps/agenda/app.cpp,apps/agenda/agenda_icon.png))
 
