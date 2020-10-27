@@ -31,16 +31,17 @@ void Agenda::FriendController::setAgendaData(AgendaData* agendaData) {
 
 void Agenda::FriendController::willDisplayCellForIndex(HighlightCell * cell, int index) {
 	Cell * myCell = (Cell *)cell;
-	if (index == AGENDA_NUMS+2)
+	if (index == AGENDA_NUMS+2) {
 		myCell->setLabel(I18n::Message::EndingWithMe);
-	else if (index == AGENDA_NUMS+1)
+	} else if (index == AGENDA_NUMS+1) {
 		myCell->setLabel(I18n::Message::StartingWithMe);
-	else if (index == AGENDA_NUMS)
+	} else if (index == AGENDA_NUMS) {
 		myCell->setLabel(I18n::Message::CommonGaps);
-	else if (index == AGENDA_NUMS-1)
+	} else if (index == AGENDA_NUMS-1) {
 		myCell->setLabel(I18n::Message::Me);
-	else
+	} else {
 		myCell->setText(m_agendaData->friend_agendas[index].name);
+	}
 	myCell->setImage(ImageStore::AgendaBinomialIcon, ImageStore::AgendaFocusedBinomialIcon);
 	myCell->reloadCell();
 }
