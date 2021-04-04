@@ -89,16 +89,18 @@ App::App(Snapshot * snapshot) :
       , snapshot->lockOnConsole()
 #endif
       ),
-  m_listFooter(&m_codeStackViewController, &m_menuController, &m_menuController, ButtonRowController::Position::Bottom, ButtonRowController::Style::EmbossedGrey, ButtonRowController::Size::Large),
+  m_listFooter(&m_codeStackViewController, &m_menuController, &m_menuController, ButtonRowController::Position::Bottom, ButtonRowController::Style::EmbossedGray, ButtonRowController::Size::Large),
   m_menuController(&m_listFooter, this, snapshot->scriptStore(), &m_listFooter),
   m_codeStackViewController(&m_modalViewController, &m_listFooter),
   m_variableBoxController(snapshot->scriptStore())
 {
+  Clipboard::sharedClipboard()->enterPython();
 }
 
 App::~App() {
   assert(!m_consoleController.inputRunLoopActive());
   deinitPython();
+  Clipboard::sharedClipboard()->exitPython();
 }
 
 bool App::handleEvent(Ion::Events::Event event) {
@@ -120,6 +122,10 @@ void App::willExitResponderChain(Responder * nextFirstResponder) {
 
 Toolbox * App::toolboxForInputEventHandler(InputEventHandler * textInput) {
   return &m_toolbox;
+}
+
+Code::toolboxIonKeys * App::toolboxIonKeys() {
+  return &m_toolboxIonKeys;
 }
 
 VariableBoxController * App::variableBoxForInputEventHandler(InputEventHandler * textInput) {

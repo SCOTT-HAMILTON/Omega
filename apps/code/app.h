@@ -9,6 +9,8 @@
 #include "script_store.h"
 #include "python_toolbox.h"
 #include "variable_box_controller.h"
+#include "../shared/shared_app.h"
+#include "toolbox_ion_keys.h"
 
 namespace Code {
 
@@ -21,7 +23,7 @@ public:
     App::Descriptor::ExaminationLevel examinationLevel() override;
     const Image * icon() override;
   };
-  class Snapshot : public ::App::Snapshot {
+  class Snapshot : public SharedApp::Snapshot {
   public:
     Snapshot();
     App * unpack(Container * container) override;
@@ -74,7 +76,9 @@ public:
 
   VariableBoxController * variableBoxController() { return &m_variableBoxController; }
 
-  static constexpr int k_pythonHeapSize = 32768;
+  static constexpr int k_pythonHeapSize = 100000;
+
+  Code::toolboxIonKeys * toolboxIonKeys();
 
 private:
   /* Python delegate:
@@ -92,6 +96,7 @@ private:
   StackViewController m_codeStackViewController;
   PythonToolbox m_toolbox;
   VariableBoxController m_variableBoxController;
+  Code::toolboxIonKeys m_toolboxIonKeys;
 };
 
 }

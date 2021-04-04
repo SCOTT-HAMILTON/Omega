@@ -3,6 +3,7 @@
 
 #include <ion/backlight.h>
 #include <ion/battery.h>
+#include <ion/clipboard.h>
 #include <ion/console.h>
 #include <ion/display.h>
 #include <ion/events.h>
@@ -10,6 +11,7 @@
 #include <ion/keyboard.h>
 #include <ion/led.h>
 #include <ion/power.h>
+#include <ion/rtc.h>
 #include <ion/storage.h>
 #include <ion/timing.h>
 #include <ion/usb.h>
@@ -30,9 +32,7 @@ void ion_main(int argc, const char * const argv[]);
 namespace Ion {
 
 const char * serialNumber();
-#ifdef OMEGA_USERNAME
-const char * username();
-#endif
+const volatile char * username();
 const char * softwareVersion();
 const char * omegaVersion();
 const char * patchLevel();
@@ -50,6 +50,9 @@ uint32_t random();
 // Decompress data
 void decompress(const uint8_t * src, uint8_t * dst, int srcSize, int dstSize);
 
+// Sets and returns address to the first object that can be allocated on stack
+void * stackStart();
+void setStackStart(void *);
 // Tells whether the stack pointer is within acceptable bounds
 bool stackSafe();
 

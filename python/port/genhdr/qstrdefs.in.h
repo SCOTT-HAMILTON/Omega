@@ -373,10 +373,13 @@ Q(KEY_EXE)
 // Kandinsky QSTRs
 Q(kandinsky)
 Q(color)
+Q(draw_line)
 Q(draw_string)
 Q(fill_rect)
 Q(get_pixel)
 Q(set_pixel)
+Q(large_font)
+Q(small_font)
 Q(wait_vblank)
 Q(get_keys)
 
@@ -492,8 +495,13 @@ Q(isvisible)
 Q(colormode)
 
 // utime QSTRs
+Q(localtime)
+Q(mktime)
 Q(time)
+Q(setlocaltime)
+Q(setrtcmode)
 Q(sleep)
+Q(rtcmode)
 Q(monotonic)
 
 // file QSTRs
